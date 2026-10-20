@@ -19,6 +19,7 @@ Pick your starting point:
 | I want to… | Start here |
 | --- | --- |
 | Try a working parser | Follow the two-minute example below. |
+| Parse a MATLAB file | Follow the [MATLAB example](#parse-a-matlab-file). |
 | Generate my own grammar | Run `antlr4py MyGrammar.g4 -o generated --visitor`. |
 | Generate from Python | Use `from antlr4py import generate` below. |
 | Contribute | Install the checkout and run the test command below. |
@@ -94,6 +95,59 @@ See [full usage and grammar examples](USAGE.md) and
 
 The [grammars folder](grammars/README.md) contains the original MATLAB grammar
 and an extended `matlab61.g4` copy with usage instructions and known limits.
+
+## Parse a MATLAB file
+
+The included [signal_analysis.m](examples/signal_analysis.m) demonstrates matrix
+whitespace, indexing with `end`, a function handle, and command-form calls:
+
+```matlab
+samples = [1 -2 3 .5];
+signal = samples(1:end-1);
+gain = @sin;
+result = feval(gain, signal);
+last = result(end);
+
+if last > 0
+    disp 'positive sample'
+else
+    disp 'nonpositive sample'
+end
+```
+
+From the repository root, generate a Python parser and visitor using
+[matlab61.g4](grammars/matlab61.g4), then parse the `.m` file:
+
+```sh
+python -m antlr4py grammars/matlab61.g4 -o generated -package generated --visitor
+python -m examples.parse_matlab examples/signal_analysis.m
+```
+
+Expected output:
+
+```text
+Parsed: signal_analysis.m
+Assignments (5): samples, signal, gain, result, last
+```
+
+The [Python example](examples/parse_matlab.py) reads the file, constructs a parse
+tree, and visits assignments to collect their targets. To inspect the full tree:
+
+```sh
+python -m examples.parse_matlab examples/signal_analysis.m --tree
+```
+
+To parse your own file:
+
+```sh
+python -m examples.parse_matlab path/to/your_script.m
+```
+
+This converts MATLAB source into a **parse tree**, not executable Python. It
+does not execute the script or translate its calculations. A translator would
+need additional visitor logic. The grammar's [coverage audit](grammars/MATLAB61_AUDIT.md)
+describes the remaining MATLAB 6.1 verification limits. If regenerating existing
+parser files, add `--overwrite` to the generation command.
 
 ## Develop and test
 
