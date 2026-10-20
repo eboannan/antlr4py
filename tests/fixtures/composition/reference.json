@@ -1,0 +1,503 @@
+{
+  "antlr_version": "4.13.2",
+  "jar_sha256": "eae2dfa119a64327444672aff63e9ec35a20180dc5b8090b7a6ab85125df4d76",
+  "scenarios": [
+    {
+      "generate": [
+        "ComposeTokens",
+        "ComposeParser"
+      ],
+      "lexer": "ComposeTokens",
+      "parser": "ComposeParser",
+      "vocabularies": {
+        "ComposeParser.tokens": "ID=1\nINT=2\nPLUS=3\nSTAR=4\nLP=5\nRP=6\nWS=7\n'+'=3\n'*'=4\n'('=5\n')'=6\n",
+        "ComposeTokens.tokens": "ID=1\nINT=2\nPLUS=3\nSTAR=4\nLP=5\nRP=6\nWS=7\n'+'=3\n'*'=4\n'('=5\n')'=6\n"
+      },
+      "cases": [
+        {
+          "input": "2+3*4",
+          "tree": "(start (expr (expr (atom 2)) + (expr (expr (atom 3)) * (expr (atom 4)))) <EOF>)",
+          "tokens": [
+            [
+              2,
+              "2",
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              "+",
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              "3",
+              1,
+              2,
+              2,
+              2,
+              0
+            ],
+            [
+              4,
+              "*",
+              1,
+              3,
+              3,
+              3,
+              0
+            ],
+            [
+              2,
+              "4",
+              1,
+              4,
+              4,
+              4,
+              0
+            ],
+            [
+              -1,
+              "<EOF>",
+              1,
+              5,
+              5,
+              4,
+              0
+            ]
+          ]
+        },
+        {
+          "input": "(2+3)*4",
+          "tree": "(start (expr (expr (atom ( (expr (expr (atom 2)) + (expr (atom 3))) ))) * (expr (atom 4))) <EOF>)",
+          "tokens": [
+            [
+              5,
+              "(",
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              "2",
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              3,
+              "+",
+              1,
+              2,
+              2,
+              2,
+              0
+            ],
+            [
+              2,
+              "3",
+              1,
+              3,
+              3,
+              3,
+              0
+            ],
+            [
+              6,
+              ")",
+              1,
+              4,
+              4,
+              4,
+              0
+            ],
+            [
+              4,
+              "*",
+              1,
+              5,
+              5,
+              5,
+              0
+            ],
+            [
+              2,
+              "4",
+              1,
+              6,
+              6,
+              6,
+              0
+            ],
+            [
+              -1,
+              "<EOF>",
+              1,
+              7,
+              7,
+              6,
+              0
+            ]
+          ]
+        },
+        {
+          "input": "1+2+3",
+          "tree": "(start (expr (expr (expr (atom 1)) + (expr (atom 2))) + (expr (atom 3))) <EOF>)",
+          "tokens": [
+            [
+              2,
+              "1",
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              "+",
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              "2",
+              1,
+              2,
+              2,
+              2,
+              0
+            ],
+            [
+              3,
+              "+",
+              1,
+              3,
+              3,
+              3,
+              0
+            ],
+            [
+              2,
+              "3",
+              1,
+              4,
+              4,
+              4,
+              0
+            ],
+            [
+              -1,
+              "<EOF>",
+              1,
+              5,
+              5,
+              4,
+              0
+            ]
+          ]
+        },
+        {
+          "input": "2+\n3",
+          "tree": "(start (expr (expr (atom 2)) + (expr (atom 3))) <EOF>)",
+          "tokens": [
+            [
+              2,
+              "2",
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              "+",
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              "3",
+              2,
+              0,
+              3,
+              3,
+              0
+            ],
+            [
+              -1,
+              "<EOF>",
+              2,
+              1,
+              4,
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "input": "name",
+          "error": "1:0: mismatched input 'name' expecting {INT, '('}"
+        },
+        {
+          "input": "2+",
+          "error": "1:2: mismatched input '<EOF>' expecting {INT, '('}"
+        },
+        {
+          "input": "(2",
+          "error": "1:2: missing ')' at '<EOF>'"
+        },
+        {
+          "input": "",
+          "error": "1:0: mismatched input '<EOF>' expecting {INT, '('}"
+        }
+      ]
+    },
+    {
+      "generate": [
+        "RootWords"
+      ],
+      "lexer": "RootWords",
+      "parser": null,
+      "vocabularies": {
+        "RootWords.tokens": "KEYWORD=1\nWORD=2\nWS=3\n'if'=1\n"
+      },
+      "cases": [
+        {
+          "input": "if hello HELLO",
+          "tokens": [
+            [
+              1,
+              "if",
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              2,
+              "hello",
+              1,
+              3,
+              3,
+              7,
+              0
+            ],
+            [
+              2,
+              "HELLO",
+              1,
+              9,
+              9,
+              13,
+              0
+            ],
+            [
+              -1,
+              "<EOF>",
+              1,
+              14,
+              14,
+              13,
+              0
+            ]
+          ]
+        },
+        {
+          "input": "a\nZ",
+          "tokens": [
+            [
+              2,
+              "a",
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              "Z",
+              2,
+              0,
+              2,
+              2,
+              0
+            ],
+            [
+              -1,
+              "<EOF>",
+              2,
+              1,
+              3,
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "input": "iffy",
+          "tokens": [
+            [
+              2,
+              "iffy",
+              1,
+              0,
+              0,
+              3,
+              0
+            ],
+            [
+              -1,
+              "<EOF>",
+              1,
+              4,
+              4,
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "input": "1",
+          "error": "1:0: token recognition error at: '1'"
+        }
+      ]
+    },
+    {
+      "generate": [
+        "RootComposition"
+      ],
+      "lexer": "RootCompositionLexer",
+      "parser": "RootCompositionParser",
+      "vocabularies": {
+        "RootComposition.tokens": "T__0=1\nT__1=2\nWS=3\n'!'=1\n'a'=2\n",
+        "RootCompositionLexer.tokens": "T__0=1\nT__1=2\nWS=3\n'!'=1\n'a'=2\n"
+      },
+      "cases": [
+        {
+          "input": "a",
+          "tree": "(start (item (atom a)) <EOF>)",
+          "tokens": [
+            [
+              2,
+              "a",
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              -1,
+              "<EOF>",
+              1,
+              1,
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "input": "a!",
+          "tree": "(start (item (atom a) !) <EOF>)",
+          "tokens": [
+            [
+              2,
+              "a",
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              "!",
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              -1,
+              "<EOF>",
+              1,
+              2,
+              2,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "input": "a !",
+          "tree": "(start (item (atom a) !) <EOF>)",
+          "tokens": [
+            [
+              2,
+              "a",
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              "!",
+              1,
+              2,
+              2,
+              2,
+              0
+            ],
+            [
+              -1,
+              "<EOF>",
+              1,
+              3,
+              3,
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "input": "b",
+          "error": "1:0: token recognition error at: 'b'"
+        },
+        {
+          "input": "aa",
+          "error": "1:1: extraneous input 'a' expecting <EOF>"
+        },
+        {
+          "input": "",
+          "error": "1:0: missing 'a' at '<EOF>'"
+        }
+      ]
+    }
+  ]
+}

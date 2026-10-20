@@ -1,0 +1,3760 @@
+{
+  "antlr_version": "4.13.2",
+  "jar_sha256": "eae2dfa119a64327444672aff63e9ec35a20180dc5b8090b7a6ab85125df4d76",
+  "grammars": {
+    "Labels": {
+      "fields": [
+        "values",
+        "left",
+        "right",
+        "op",
+        "inner",
+        "value"
+      ],
+      "cases": [
+        {
+          "input": "2+3*4",
+          "snapshot": {
+            "tree": "(start (expr (expr 2) + (expr (expr 3) * (expr 4))) <EOF>)",
+            "contexts": [
+              {
+                "class": "StartContext",
+                "fields": {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "2+3*4"
+                    }
+                  ]
+                },
+                "rule": 0,
+                "text": "2+3*4<EOF>",
+                "interval": [
+                  0,
+                  4
+                ]
+              },
+              {
+                "class": "AddContext",
+                "fields": {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "MultiplyContext",
+                    "text": "3*4"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                },
+                "rule": 1,
+                "text": "2+3*4",
+                "interval": [
+                  0,
+                  4
+                ]
+              },
+              {
+                "class": "IntegerContext",
+                "fields": {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 0
+                  }
+                },
+                "rule": 1,
+                "text": "2",
+                "interval": [
+                  0,
+                  0
+                ]
+              },
+              {
+                "class": "MultiplyContext",
+                "fields": {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 3
+                  }
+                },
+                "rule": 1,
+                "text": "3*4",
+                "interval": [
+                  2,
+                  4
+                ]
+              },
+              {
+                "class": "IntegerContext",
+                "fields": {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 2
+                  }
+                },
+                "rule": 1,
+                "text": "3",
+                "interval": [
+                  2,
+                  2
+                ]
+              },
+              {
+                "class": "IntegerContext",
+                "fields": {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 4
+                  }
+                },
+                "rule": 1,
+                "text": "4",
+                "interval": [
+                  4,
+                  4
+                ]
+              }
+            ],
+            "visits": [
+              "visitStart",
+              "visitAdd",
+              "visitInteger",
+              "visitMultiply",
+              "visitInteger",
+              "visitInteger"
+            ],
+            "walking": [
+              [
+                "enter",
+                "StartContext",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "2+3*4"
+                    }
+                  ]
+                }
+              ],
+              [
+                "enterStart",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "2+3*4"
+                    }
+                  ]
+                }
+              ],
+              [
+                "enter",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "MultiplyContext",
+                    "text": "3*4"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "enterAdd",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "MultiplyContext",
+                    "text": "3*4"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "enter",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "enterInteger",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "token",
+                "2",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "token",
+                "+",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "MultiplyContext",
+                    "text": "3*4"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "enter",
+                "MultiplyContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "enterMultiply",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "enter",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "enterInteger",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "token",
+                "3",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "token",
+                "*",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "enter",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 4
+                  }
+                }
+              ],
+              [
+                "enterInteger",
+                {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 4
+                  }
+                }
+              ],
+              [
+                "token",
+                "4",
+                {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 4
+                  }
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 4
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 4
+                  }
+                }
+              ],
+              [
+                "exitMultiply",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "exit",
+                "MultiplyContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "exitAdd",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "MultiplyContext",
+                    "text": "3*4"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "exit",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "MultiplyContext",
+                    "text": "3*4"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "token",
+                "<EOF>",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "2+3*4"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exitStart",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "2+3*4"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exit",
+                "StartContext",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "2+3*4"
+                    }
+                  ]
+                }
+              ]
+            ],
+            "parsing": [
+              [
+                "enter",
+                "StartContext",
+                {
+                  "values": []
+                }
+              ],
+              [
+                "enterStart",
+                {
+                  "values": []
+                }
+              ],
+              [
+                "enter",
+                "ExprContext",
+                {}
+              ],
+              [
+                "token",
+                "2",
+                {
+                  "value": null
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "enter",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "enterAdd",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "token",
+                "+",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "enter",
+                "ExprContext",
+                {}
+              ],
+              [
+                "token",
+                "3",
+                {
+                  "value": null
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "enter",
+                "MultiplyContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "enterMultiply",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "token",
+                "*",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "enter",
+                "ExprContext",
+                {}
+              ],
+              [
+                "token",
+                "4",
+                {
+                  "value": null
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 4
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 4
+                  }
+                }
+              ],
+              [
+                "exitMultiply",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "exit",
+                "MultiplyContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "exitAdd",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "MultiplyContext",
+                    "text": "3*4"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "exit",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "MultiplyContext",
+                    "text": "3*4"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "token",
+                "<EOF>",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "2+3*4"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exitStart",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "2+3*4"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exit",
+                "StartContext",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "2+3*4"
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        {
+          "input": "(2+3)*4,5",
+          "snapshot": {
+            "tree": "(start (expr (expr ( (expr (expr 2) + (expr 3)) )) * (expr 4)) , (expr 5) <EOF>)",
+            "contexts": [
+              {
+                "class": "StartContext",
+                "fields": {
+                  "values": [
+                    {
+                      "context": "MultiplyContext",
+                      "text": "(2+3)*4"
+                    },
+                    {
+                      "context": "IntegerContext",
+                      "text": "5"
+                    }
+                  ]
+                },
+                "rule": 0,
+                "text": "(2+3)*4,5<EOF>",
+                "interval": [
+                  0,
+                  8
+                ]
+              },
+              {
+                "class": "MultiplyContext",
+                "fields": {
+                  "left": {
+                    "context": "ParenthesesContext",
+                    "text": "(2+3)"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 5
+                  }
+                },
+                "rule": 1,
+                "text": "(2+3)*4",
+                "interval": [
+                  0,
+                  6
+                ]
+              },
+              {
+                "class": "ParenthesesContext",
+                "fields": {
+                  "inner": {
+                    "context": "AddContext",
+                    "text": "2+3"
+                  }
+                },
+                "rule": 1,
+                "text": "(2+3)",
+                "interval": [
+                  0,
+                  4
+                ]
+              },
+              {
+                "class": "AddContext",
+                "fields": {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 2
+                  }
+                },
+                "rule": 1,
+                "text": "2+3",
+                "interval": [
+                  1,
+                  3
+                ]
+              },
+              {
+                "class": "IntegerContext",
+                "fields": {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 1
+                  }
+                },
+                "rule": 1,
+                "text": "2",
+                "interval": [
+                  1,
+                  1
+                ]
+              },
+              {
+                "class": "IntegerContext",
+                "fields": {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 3
+                  }
+                },
+                "rule": 1,
+                "text": "3",
+                "interval": [
+                  3,
+                  3
+                ]
+              },
+              {
+                "class": "IntegerContext",
+                "fields": {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 6
+                  }
+                },
+                "rule": 1,
+                "text": "4",
+                "interval": [
+                  6,
+                  6
+                ]
+              },
+              {
+                "class": "IntegerContext",
+                "fields": {
+                  "value": {
+                    "token": "5",
+                    "type": 6,
+                    "index": 8
+                  }
+                },
+                "rule": 1,
+                "text": "5",
+                "interval": [
+                  8,
+                  8
+                ]
+              }
+            ],
+            "visits": [
+              "visitStart",
+              "visitMultiply",
+              "visitParentheses",
+              "visitAdd",
+              "visitInteger",
+              "visitInteger",
+              "visitInteger",
+              "visitInteger"
+            ],
+            "walking": [
+              [
+                "enter",
+                "StartContext",
+                {
+                  "values": [
+                    {
+                      "context": "MultiplyContext",
+                      "text": "(2+3)*4"
+                    },
+                    {
+                      "context": "IntegerContext",
+                      "text": "5"
+                    }
+                  ]
+                }
+              ],
+              [
+                "enterStart",
+                {
+                  "values": [
+                    {
+                      "context": "MultiplyContext",
+                      "text": "(2+3)*4"
+                    },
+                    {
+                      "context": "IntegerContext",
+                      "text": "5"
+                    }
+                  ]
+                }
+              ],
+              [
+                "enter",
+                "MultiplyContext",
+                {
+                  "left": {
+                    "context": "ParenthesesContext",
+                    "text": "(2+3)"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 5
+                  }
+                }
+              ],
+              [
+                "enterMultiply",
+                {
+                  "left": {
+                    "context": "ParenthesesContext",
+                    "text": "(2+3)"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 5
+                  }
+                }
+              ],
+              [
+                "enter",
+                "ParenthesesContext",
+                {
+                  "inner": {
+                    "context": "AddContext",
+                    "text": "2+3"
+                  }
+                }
+              ],
+              [
+                "enterParentheses",
+                {
+                  "inner": {
+                    "context": "AddContext",
+                    "text": "2+3"
+                  }
+                }
+              ],
+              [
+                "token",
+                "(",
+                {
+                  "inner": {
+                    "context": "AddContext",
+                    "text": "2+3"
+                  }
+                }
+              ],
+              [
+                "enter",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "enterAdd",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "enter",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "enterInteger",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "token",
+                "2",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "token",
+                "+",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "enter",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "enterInteger",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "token",
+                "3",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "exitAdd",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "exit",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "token",
+                ")",
+                {
+                  "inner": {
+                    "context": "AddContext",
+                    "text": "2+3"
+                  }
+                }
+              ],
+              [
+                "exitParentheses",
+                {
+                  "inner": {
+                    "context": "AddContext",
+                    "text": "2+3"
+                  }
+                }
+              ],
+              [
+                "exit",
+                "ParenthesesContext",
+                {
+                  "inner": {
+                    "context": "AddContext",
+                    "text": "2+3"
+                  }
+                }
+              ],
+              [
+                "token",
+                "*",
+                {
+                  "left": {
+                    "context": "ParenthesesContext",
+                    "text": "(2+3)"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 5
+                  }
+                }
+              ],
+              [
+                "enter",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 6
+                  }
+                }
+              ],
+              [
+                "enterInteger",
+                {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 6
+                  }
+                }
+              ],
+              [
+                "token",
+                "4",
+                {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 6
+                  }
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 6
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 6
+                  }
+                }
+              ],
+              [
+                "exitMultiply",
+                {
+                  "left": {
+                    "context": "ParenthesesContext",
+                    "text": "(2+3)"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 5
+                  }
+                }
+              ],
+              [
+                "exit",
+                "MultiplyContext",
+                {
+                  "left": {
+                    "context": "ParenthesesContext",
+                    "text": "(2+3)"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 5
+                  }
+                }
+              ],
+              [
+                "token",
+                ",",
+                {
+                  "values": [
+                    {
+                      "context": "MultiplyContext",
+                      "text": "(2+3)*4"
+                    },
+                    {
+                      "context": "IntegerContext",
+                      "text": "5"
+                    }
+                  ]
+                }
+              ],
+              [
+                "enter",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "5",
+                    "type": 6,
+                    "index": 8
+                  }
+                }
+              ],
+              [
+                "enterInteger",
+                {
+                  "value": {
+                    "token": "5",
+                    "type": 6,
+                    "index": 8
+                  }
+                }
+              ],
+              [
+                "token",
+                "5",
+                {
+                  "value": {
+                    "token": "5",
+                    "type": 6,
+                    "index": 8
+                  }
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "5",
+                    "type": 6,
+                    "index": 8
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "5",
+                    "type": 6,
+                    "index": 8
+                  }
+                }
+              ],
+              [
+                "token",
+                "<EOF>",
+                {
+                  "values": [
+                    {
+                      "context": "MultiplyContext",
+                      "text": "(2+3)*4"
+                    },
+                    {
+                      "context": "IntegerContext",
+                      "text": "5"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exitStart",
+                {
+                  "values": [
+                    {
+                      "context": "MultiplyContext",
+                      "text": "(2+3)*4"
+                    },
+                    {
+                      "context": "IntegerContext",
+                      "text": "5"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exit",
+                "StartContext",
+                {
+                  "values": [
+                    {
+                      "context": "MultiplyContext",
+                      "text": "(2+3)*4"
+                    },
+                    {
+                      "context": "IntegerContext",
+                      "text": "5"
+                    }
+                  ]
+                }
+              ]
+            ],
+            "parsing": [
+              [
+                "enter",
+                "StartContext",
+                {
+                  "values": []
+                }
+              ],
+              [
+                "enterStart",
+                {
+                  "values": []
+                }
+              ],
+              [
+                "enter",
+                "ExprContext",
+                {}
+              ],
+              [
+                "token",
+                "(",
+                {
+                  "inner": null
+                }
+              ],
+              [
+                "enter",
+                "ExprContext",
+                {}
+              ],
+              [
+                "token",
+                "2",
+                {
+                  "value": null
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "enter",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "enterAdd",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "token",
+                "+",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "enter",
+                "ExprContext",
+                {}
+              ],
+              [
+                "token",
+                "3",
+                {
+                  "value": null
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "exitAdd",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "exit",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "token",
+                ")",
+                {
+                  "inner": {
+                    "context": "AddContext",
+                    "text": "2+3"
+                  }
+                }
+              ],
+              [
+                "exitParentheses",
+                {
+                  "inner": {
+                    "context": "AddContext",
+                    "text": "2+3"
+                  }
+                }
+              ],
+              [
+                "exit",
+                "ParenthesesContext",
+                {
+                  "inner": {
+                    "context": "AddContext",
+                    "text": "2+3"
+                  }
+                }
+              ],
+              [
+                "enter",
+                "MultiplyContext",
+                {
+                  "left": {
+                    "context": "ParenthesesContext",
+                    "text": "(2+3)"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "enterMultiply",
+                {
+                  "left": {
+                    "context": "ParenthesesContext",
+                    "text": "(2+3)"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "token",
+                "*",
+                {
+                  "left": {
+                    "context": "ParenthesesContext",
+                    "text": "(2+3)"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "enter",
+                "ExprContext",
+                {}
+              ],
+              [
+                "token",
+                "4",
+                {
+                  "value": null
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 6
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "4",
+                    "type": 6,
+                    "index": 6
+                  }
+                }
+              ],
+              [
+                "exitMultiply",
+                {
+                  "left": {
+                    "context": "ParenthesesContext",
+                    "text": "(2+3)"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 5
+                  }
+                }
+              ],
+              [
+                "exit",
+                "MultiplyContext",
+                {
+                  "left": {
+                    "context": "ParenthesesContext",
+                    "text": "(2+3)"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "4"
+                  },
+                  "op": {
+                    "token": "*",
+                    "type": 2,
+                    "index": 5
+                  }
+                }
+              ],
+              [
+                "token",
+                ",",
+                {
+                  "values": [
+                    {
+                      "context": "MultiplyContext",
+                      "text": "(2+3)*4"
+                    }
+                  ]
+                }
+              ],
+              [
+                "enter",
+                "ExprContext",
+                {}
+              ],
+              [
+                "token",
+                "5",
+                {
+                  "value": null
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "5",
+                    "type": 6,
+                    "index": 8
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "5",
+                    "type": 6,
+                    "index": 8
+                  }
+                }
+              ],
+              [
+                "token",
+                "<EOF>",
+                {
+                  "values": [
+                    {
+                      "context": "MultiplyContext",
+                      "text": "(2+3)*4"
+                    },
+                    {
+                      "context": "IntegerContext",
+                      "text": "5"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exitStart",
+                {
+                  "values": [
+                    {
+                      "context": "MultiplyContext",
+                      "text": "(2+3)*4"
+                    },
+                    {
+                      "context": "IntegerContext",
+                      "text": "5"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exit",
+                "StartContext",
+                {
+                  "values": [
+                    {
+                      "context": "MultiplyContext",
+                      "text": "(2+3)*4"
+                    },
+                    {
+                      "context": "IntegerContext",
+                      "text": "5"
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        {
+          "input": "1+2+3",
+          "snapshot": {
+            "tree": "(start (expr (expr (expr 1) + (expr 2)) + (expr 3)) <EOF>)",
+            "contexts": [
+              {
+                "class": "StartContext",
+                "fields": {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "1+2+3"
+                    }
+                  ]
+                },
+                "rule": 0,
+                "text": "1+2+3<EOF>",
+                "interval": [
+                  0,
+                  4
+                ]
+              },
+              {
+                "class": "AddContext",
+                "fields": {
+                  "left": {
+                    "context": "AddContext",
+                    "text": "1+2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 3
+                  }
+                },
+                "rule": 1,
+                "text": "1+2+3",
+                "interval": [
+                  0,
+                  4
+                ]
+              },
+              {
+                "class": "AddContext",
+                "fields": {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "1"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                },
+                "rule": 1,
+                "text": "1+2",
+                "interval": [
+                  0,
+                  2
+                ]
+              },
+              {
+                "class": "IntegerContext",
+                "fields": {
+                  "value": {
+                    "token": "1",
+                    "type": 6,
+                    "index": 0
+                  }
+                },
+                "rule": 1,
+                "text": "1",
+                "interval": [
+                  0,
+                  0
+                ]
+              },
+              {
+                "class": "IntegerContext",
+                "fields": {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 2
+                  }
+                },
+                "rule": 1,
+                "text": "2",
+                "interval": [
+                  2,
+                  2
+                ]
+              },
+              {
+                "class": "IntegerContext",
+                "fields": {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 4
+                  }
+                },
+                "rule": 1,
+                "text": "3",
+                "interval": [
+                  4,
+                  4
+                ]
+              }
+            ],
+            "visits": [
+              "visitStart",
+              "visitAdd",
+              "visitAdd",
+              "visitInteger",
+              "visitInteger",
+              "visitInteger"
+            ],
+            "walking": [
+              [
+                "enter",
+                "StartContext",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "1+2+3"
+                    }
+                  ]
+                }
+              ],
+              [
+                "enterStart",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "1+2+3"
+                    }
+                  ]
+                }
+              ],
+              [
+                "enter",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "AddContext",
+                    "text": "1+2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "enterAdd",
+                {
+                  "left": {
+                    "context": "AddContext",
+                    "text": "1+2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "enter",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "1"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "enterAdd",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "1"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "enter",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "1",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "enterInteger",
+                {
+                  "value": {
+                    "token": "1",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "token",
+                "1",
+                {
+                  "value": {
+                    "token": "1",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "1",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "1",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "token",
+                "+",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "1"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "enter",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "enterInteger",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "token",
+                "2",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "exitAdd",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "1"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "exit",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "1"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "token",
+                "+",
+                {
+                  "left": {
+                    "context": "AddContext",
+                    "text": "1+2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "enter",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 4
+                  }
+                }
+              ],
+              [
+                "enterInteger",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 4
+                  }
+                }
+              ],
+              [
+                "token",
+                "3",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 4
+                  }
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 4
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 4
+                  }
+                }
+              ],
+              [
+                "exitAdd",
+                {
+                  "left": {
+                    "context": "AddContext",
+                    "text": "1+2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "exit",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "AddContext",
+                    "text": "1+2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "token",
+                "<EOF>",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "1+2+3"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exitStart",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "1+2+3"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exit",
+                "StartContext",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "1+2+3"
+                    }
+                  ]
+                }
+              ]
+            ],
+            "parsing": [
+              [
+                "enter",
+                "StartContext",
+                {
+                  "values": []
+                }
+              ],
+              [
+                "enterStart",
+                {
+                  "values": []
+                }
+              ],
+              [
+                "enter",
+                "ExprContext",
+                {}
+              ],
+              [
+                "token",
+                "1",
+                {
+                  "value": null
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "1",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "1",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "enter",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "1"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "enterAdd",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "1"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "token",
+                "+",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "1"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "enter",
+                "ExprContext",
+                {}
+              ],
+              [
+                "token",
+                "2",
+                {
+                  "value": null
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "2",
+                    "type": 6,
+                    "index": 2
+                  }
+                }
+              ],
+              [
+                "exitAdd",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "1"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "exit",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "IntegerContext",
+                    "text": "1"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "2"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 1
+                  }
+                }
+              ],
+              [
+                "enter",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "AddContext",
+                    "text": "1+2"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "enterAdd",
+                {
+                  "left": {
+                    "context": "AddContext",
+                    "text": "1+2"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "token",
+                "+",
+                {
+                  "left": {
+                    "context": "AddContext",
+                    "text": "1+2"
+                  },
+                  "right": null,
+                  "op": null
+                }
+              ],
+              [
+                "enter",
+                "ExprContext",
+                {}
+              ],
+              [
+                "token",
+                "3",
+                {
+                  "value": null
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 4
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "3",
+                    "type": 6,
+                    "index": 4
+                  }
+                }
+              ],
+              [
+                "exitAdd",
+                {
+                  "left": {
+                    "context": "AddContext",
+                    "text": "1+2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "exit",
+                "AddContext",
+                {
+                  "left": {
+                    "context": "AddContext",
+                    "text": "1+2"
+                  },
+                  "right": {
+                    "context": "IntegerContext",
+                    "text": "3"
+                  },
+                  "op": {
+                    "token": "+",
+                    "type": 3,
+                    "index": 3
+                  }
+                }
+              ],
+              [
+                "token",
+                "<EOF>",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "1+2+3"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exitStart",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "1+2+3"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exit",
+                "StartContext",
+                {
+                  "values": [
+                    {
+                      "context": "AddContext",
+                      "text": "1+2+3"
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        {
+          "input": "7",
+          "snapshot": {
+            "tree": "(start (expr 7) <EOF>)",
+            "contexts": [
+              {
+                "class": "StartContext",
+                "fields": {
+                  "values": [
+                    {
+                      "context": "IntegerContext",
+                      "text": "7"
+                    }
+                  ]
+                },
+                "rule": 0,
+                "text": "7<EOF>",
+                "interval": [
+                  0,
+                  0
+                ]
+              },
+              {
+                "class": "IntegerContext",
+                "fields": {
+                  "value": {
+                    "token": "7",
+                    "type": 6,
+                    "index": 0
+                  }
+                },
+                "rule": 1,
+                "text": "7",
+                "interval": [
+                  0,
+                  0
+                ]
+              }
+            ],
+            "visits": [
+              "visitStart",
+              "visitInteger"
+            ],
+            "walking": [
+              [
+                "enter",
+                "StartContext",
+                {
+                  "values": [
+                    {
+                      "context": "IntegerContext",
+                      "text": "7"
+                    }
+                  ]
+                }
+              ],
+              [
+                "enterStart",
+                {
+                  "values": [
+                    {
+                      "context": "IntegerContext",
+                      "text": "7"
+                    }
+                  ]
+                }
+              ],
+              [
+                "enter",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "7",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "enterInteger",
+                {
+                  "value": {
+                    "token": "7",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "token",
+                "7",
+                {
+                  "value": {
+                    "token": "7",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "7",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "7",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "token",
+                "<EOF>",
+                {
+                  "values": [
+                    {
+                      "context": "IntegerContext",
+                      "text": "7"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exitStart",
+                {
+                  "values": [
+                    {
+                      "context": "IntegerContext",
+                      "text": "7"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exit",
+                "StartContext",
+                {
+                  "values": [
+                    {
+                      "context": "IntegerContext",
+                      "text": "7"
+                    }
+                  ]
+                }
+              ]
+            ],
+            "parsing": [
+              [
+                "enter",
+                "StartContext",
+                {
+                  "values": []
+                }
+              ],
+              [
+                "enterStart",
+                {
+                  "values": []
+                }
+              ],
+              [
+                "enter",
+                "ExprContext",
+                {}
+              ],
+              [
+                "token",
+                "7",
+                {
+                  "value": null
+                }
+              ],
+              [
+                "exitInteger",
+                {
+                  "value": {
+                    "token": "7",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "exit",
+                "IntegerContext",
+                {
+                  "value": {
+                    "token": "7",
+                    "type": 6,
+                    "index": 0
+                  }
+                }
+              ],
+              [
+                "token",
+                "<EOF>",
+                {
+                  "values": [
+                    {
+                      "context": "IntegerContext",
+                      "text": "7"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exitStart",
+                {
+                  "values": [
+                    {
+                      "context": "IntegerContext",
+                      "text": "7"
+                    }
+                  ]
+                }
+              ],
+              [
+                "exit",
+                "StartContext",
+                {
+                  "values": [
+                    {
+                      "context": "IntegerContext",
+                      "text": "7"
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    "Attributes": {
+      "fields": [
+        "result",
+        "n",
+        "value",
+        "seen",
+        "head",
+        "rest"
+      ],
+      "cases": [
+        {
+          "input": "12",
+          "snapshot": {
+            "tree": "(start (child 12) <EOF>)",
+            "contexts": [
+              {
+                "class": "StartContext",
+                "fields": {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "12"
+                  }
+                },
+                "rule": 0,
+                "text": "12<EOF>",
+                "interval": [
+                  0,
+                  0
+                ]
+              },
+              {
+                "class": "ChildContext",
+                "fields": {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "12",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": []
+                },
+                "rule": 1,
+                "text": "12",
+                "interval": [
+                  0,
+                  0
+                ]
+              }
+            ],
+            "visits": [
+              "visitStart",
+              "visitChild"
+            ],
+            "walking": [
+              [
+                "enter",
+                "StartContext",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "12"
+                  }
+                }
+              ],
+              [
+                "enterStart",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "12"
+                  }
+                }
+              ],
+              [
+                "enter",
+                "ChildContext",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "12",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": []
+                }
+              ],
+              [
+                "enterChild",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "12",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": []
+                }
+              ],
+              [
+                "token",
+                "12",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "12",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": []
+                }
+              ],
+              [
+                "exitChild",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "12",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": []
+                }
+              ],
+              [
+                "exit",
+                "ChildContext",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "12",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": []
+                }
+              ],
+              [
+                "token",
+                "<EOF>",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "12"
+                  }
+                }
+              ],
+              [
+                "exitStart",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "12"
+                  }
+                }
+              ],
+              [
+                "exit",
+                "StartContext",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "12"
+                  }
+                }
+              ]
+            ],
+            "parsing": [
+              [
+                "enter",
+                "StartContext",
+                {
+                  "result": null
+                }
+              ],
+              [
+                "enterStart",
+                {
+                  "result": null
+                }
+              ],
+              [
+                "enter",
+                "ChildContext",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": null,
+                  "rest": []
+                }
+              ],
+              [
+                "enterChild",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": null,
+                  "rest": []
+                }
+              ],
+              [
+                "token",
+                "12",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": null,
+                  "rest": []
+                }
+              ],
+              [
+                "exitChild",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "12",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": []
+                }
+              ],
+              [
+                "exit",
+                "ChildContext",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "12",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": []
+                }
+              ],
+              [
+                "token",
+                "<EOF>",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "12"
+                  }
+                }
+              ],
+              [
+                "exitStart",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "12"
+                  }
+                }
+              ],
+              [
+                "exit",
+                "StartContext",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "12"
+                  }
+                }
+              ]
+            ]
+          }
+        },
+        {
+          "input": "1 2 3",
+          "snapshot": {
+            "tree": "(start (child 1 2 3) <EOF>)",
+            "contexts": [
+              {
+                "class": "StartContext",
+                "fields": {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "123"
+                  }
+                },
+                "rule": 0,
+                "text": "123<EOF>",
+                "interval": [
+                  0,
+                  2
+                ]
+              },
+              {
+                "class": "ChildContext",
+                "fields": {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "1",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": [
+                    {
+                      "token": "2",
+                      "type": 1,
+                      "index": 1
+                    },
+                    {
+                      "token": "3",
+                      "type": 1,
+                      "index": 2
+                    }
+                  ]
+                },
+                "rule": 1,
+                "text": "123",
+                "interval": [
+                  0,
+                  2
+                ]
+              }
+            ],
+            "visits": [
+              "visitStart",
+              "visitChild"
+            ],
+            "walking": [
+              [
+                "enter",
+                "StartContext",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "123"
+                  }
+                }
+              ],
+              [
+                "enterStart",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "123"
+                  }
+                }
+              ],
+              [
+                "enter",
+                "ChildContext",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "1",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": [
+                    {
+                      "token": "2",
+                      "type": 1,
+                      "index": 1
+                    },
+                    {
+                      "token": "3",
+                      "type": 1,
+                      "index": 2
+                    }
+                  ]
+                }
+              ],
+              [
+                "enterChild",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "1",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": [
+                    {
+                      "token": "2",
+                      "type": 1,
+                      "index": 1
+                    },
+                    {
+                      "token": "3",
+                      "type": 1,
+                      "index": 2
+                    }
+                  ]
+                }
+              ],
+              [
+                "token",
+                "1",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "1",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": [
+                    {
+                      "token": "2",
+                      "type": 1,
+                      "index": 1
+                    },
+                    {
+                      "token": "3",
+                      "type": 1,
+                      "index": 2
+                    }
+                  ]
+                }
+              ],
+              [
+                "token",
+                "2",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "1",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": [
+                    {
+                      "token": "2",
+                      "type": 1,
+                      "index": 1
+                    },
+                    {
+                      "token": "3",
+                      "type": 1,
+                      "index": 2
+                    }
+                  ]
+                }
+              ],
+              [
+                "token",
+                "3",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "1",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": [
+                    {
+                      "token": "2",
+                      "type": 1,
+                      "index": 1
+                    },
+                    {
+                      "token": "3",
+                      "type": 1,
+                      "index": 2
+                    }
+                  ]
+                }
+              ],
+              [
+                "exitChild",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "1",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": [
+                    {
+                      "token": "2",
+                      "type": 1,
+                      "index": 1
+                    },
+                    {
+                      "token": "3",
+                      "type": 1,
+                      "index": 2
+                    }
+                  ]
+                }
+              ],
+              [
+                "exit",
+                "ChildContext",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "1",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": [
+                    {
+                      "token": "2",
+                      "type": 1,
+                      "index": 1
+                    },
+                    {
+                      "token": "3",
+                      "type": 1,
+                      "index": 2
+                    }
+                  ]
+                }
+              ],
+              [
+                "token",
+                "<EOF>",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "123"
+                  }
+                }
+              ],
+              [
+                "exitStart",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "123"
+                  }
+                }
+              ],
+              [
+                "exit",
+                "StartContext",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "123"
+                  }
+                }
+              ]
+            ],
+            "parsing": [
+              [
+                "enter",
+                "StartContext",
+                {
+                  "result": null
+                }
+              ],
+              [
+                "enterStart",
+                {
+                  "result": null
+                }
+              ],
+              [
+                "enter",
+                "ChildContext",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": null,
+                  "rest": []
+                }
+              ],
+              [
+                "enterChild",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": null,
+                  "rest": []
+                }
+              ],
+              [
+                "token",
+                "1",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": null,
+                  "rest": []
+                }
+              ],
+              [
+                "token",
+                "2",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "1",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": []
+                }
+              ],
+              [
+                "token",
+                "3",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "1",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": [
+                    {
+                      "token": "2",
+                      "type": 1,
+                      "index": 1
+                    }
+                  ]
+                }
+              ],
+              [
+                "exitChild",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "1",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": [
+                    {
+                      "token": "2",
+                      "type": 1,
+                      "index": 1
+                    },
+                    {
+                      "token": "3",
+                      "type": 1,
+                      "index": 2
+                    }
+                  ]
+                }
+              ],
+              [
+                "exit",
+                "ChildContext",
+                {
+                  "n": 3,
+                  "value": 0,
+                  "seen": [],
+                  "head": {
+                    "token": "1",
+                    "type": 1,
+                    "index": 0
+                  },
+                  "rest": [
+                    {
+                      "token": "2",
+                      "type": 1,
+                      "index": 1
+                    },
+                    {
+                      "token": "3",
+                      "type": 1,
+                      "index": 2
+                    }
+                  ]
+                }
+              ],
+              [
+                "token",
+                "<EOF>",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "123"
+                  }
+                }
+              ],
+              [
+                "exitStart",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "123"
+                  }
+                }
+              ],
+              [
+                "exit",
+                "StartContext",
+                {
+                  "result": {
+                    "context": "ChildContext",
+                    "text": "123"
+                  }
+                }
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

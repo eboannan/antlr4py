@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "antlr4py"
+version = "0.11.0a1"
+description = "Python-only ANTLR generator targeting Python recognizers"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "BSD-3-Clause AND Unicode-DFS-2016"
+license-files = ["LICENSE.txt", "UNICODE-LICENSE.txt"]
+dependencies = ["antlr4-python3-runtime==4.13.2"]
+
+[project.scripts]
+antlr4py = "antlr4_generator.__main__:main"
+antlr4-python = "antlr4_generator.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+antlr4_generator = ["unicode15.json", "unicode_properties.json"]

@@ -1,0 +1,12 @@
+lexer grammar Lexical;
+fragment DIGIT: [0-9];
+fragment LETTER: [a-zA-Z_];
+NUMBER: DIGIT+ ('.' DIGIT+)?;
+KEYWORD: 'if' | 'else';
+ID: LETTER (LETTER | DIGIT)*;
+COMMENT: '/*' .*? '*/' -> channel(HIDDEN);
+STRING: '"' ('\\' . | ~["\\\r\n])* '"';
+EMOJI: '\u{1F600}'..'\u{1F64F}';
+UNICODE: [\p{L}\p{Nd}]+;
+WS: [ \t\r\n]+ -> skip;
+ANY: .;
