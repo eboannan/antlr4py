@@ -90,6 +90,11 @@ Python code, so use grammars you trust.
 See [full usage and grammar examples](USAGE.md) and
 [compatibility and boundaries](COMPATIBILITY.md).
 
+## Included grammars
+
+The [grammars folder](grammars/README.md) contains the original MATLAB grammar
+and an extended `matlab61.g4` copy with usage instructions and known limits.
+
 ## Develop and test
 
 ```sh

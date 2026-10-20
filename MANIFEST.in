@@ -3,3 +3,4 @@ include scripts/generate_unicode.py
 include COMPATIBILITY.md
 recursive-include examples *.py *.g4
 include USAGE.md
+recursive-include grammars *.g4 *.md
