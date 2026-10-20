@@ -109,6 +109,108 @@ end
         powers = descendants(chained, 'Power_expressionContext')
         self.assertTrue(any(len(node.signed_postfix()) == 2 for node in powers))
 
+    def descendants(self, node, name):
+        result = [node] if type(node).__name__ == name else []
+        for child in getattr(node, 'children', None) or []:
+            result.extend(self.descendants(child, name))
+        return result
+
+    def test_matrix_whitespace_changes_column_count(self):
+        cases = {
+            '[1 -2]': ['1', '-2'],
+            '[1 - 2]': ['1-2'],
+            '[1- 2]': ['1-2'],
+            '[1 +2]': ['1', '+2'],
+            '[1 + 2]': ['1+2'],
+            '[1 ~2]': ['1', '~2'],
+            '[a (b + c)]': ['a', '(b+c)'],
+            '[f(1, 2) -3]': ['f(1,2)', '-3'],
+            "['a' 'b']": ["'a'", "'b'"],
+            '[1 .5]': ['1', '.5'],
+            '[1 ...\n2]': ['1', '2'],
+            '[1 ...\n -2]': ['1', '-2'],
+        }
+        for source, expected in cases.items():
+            with self.subTest(source=source):
+                tree = self.parse('x = ' + source + ';')
+                row = self.descendants(tree, 'Array_rowContext')[0]
+                self.assertEqual([e.getText() for e in row.expression()], expected)
+        self.parse('x = [\n1 2\n3 4\n];')
+        self.parse('x = {[1 -2] [3 4]};')
+        self.parse('[a b] = size(A);')
+        self.parse('function [a b] = f(x)\na=x; b=x;\n')
+
+    def test_named_function_handles(self):
+        self.parse('f = @sin;\ny = feval(f, .5);\nc = {@sin @cos};\n')
+        self.parse('function y = apply(f,x)\ny = feval(f,x);\n')
+
+    def test_command_form_arguments_are_not_expressions(self):
+        cases = {
+            'disp hello world': ['hello', 'world'],
+            "disp 'hello world'": ["'hello world'"],
+            'load data.mat': ['data.mat'],
+            'save -ascii result.txt A': ['-ascii', 'result.txt', 'A'],
+            'cd ../folder': ['../folder'],
+            'cd /tmp': ['/tmp'],
+            'cd ~/work': ['~/work'],
+            'dir *.m': ['*.m'],
+            'dir *': ['*'],
+            'delete data?.mat': ['data?.mat'],
+            'disp [1 2]': ['[1', '2]'],
+            'clear all': ['all'],
+            'clear x y': ['x', 'y'],
+            "disp prefix' with space'": ["prefix' with space'"],
+            'plot -option': ['-option'],
+            'disp ...\n hello': ['hello'],
+        }
+        for source, expected in cases.items():
+            with self.subTest(source=source):
+                tree = self.parse(source + '\n')
+                command = self.descendants(tree, 'Command_statementContext')[0]
+                self.assertEqual([arg.getText() for arg in command.COMMAND_ARGUMENT()], expected)
+        self.parse("disp hello; x = 1; disp 'goodbye' % comment\n")
+        self.parse("!echo hello world\nx = 1;\n")
+        for source in ('x + y', 'x - 2', 'x .* y', 'x(1)', 'x = 1'):
+            with self.subTest(expression=source):
+                tree = self.parse(source + ';')
+                self.assertFalse(self.descendants(tree, 'Command_statementContext'))
+
+    def test_end_requires_indexing_context(self):
+        self.parse('x=A(end-1); y=A([1 end]); z=C{end}(1);')
+        for source in ('x=end;', 'x={end};', 'x=[end];', 'x=(end);'):
+            with self.subTest(source=source), self.assertRaises(SyntaxError):
+                self.parse(source)
+
+    def test_reject_invalid_adjacency_and_modern_syntax(self):
+        for source in ('x=[1(2)3];', 'x=1 2;', 'x=@(a) a+1;',
+                       'x="hello";', 'x=a && b;', 'x=s.(name);',
+                       'x=1;\nfunction y=f()\ny=1;\n'):
+            with self.subTest(source=source), self.assertRaises(SyntaxError):
+                self.parse(source)
+
+    def test_loop_jumps_require_a_loop(self):
+        for source in ('break;', 'continue;', 'if x\nbreak;\nend\n',
+                       'function f()\ncontinue;\n'):
+            with self.subTest(source=source), self.assertRaises(SyntaxError):
+                self.parse(source)
+        self.parse('for k=1:3\ntry\nif k>1\ncontinue;\nend\ncatch\nbreak;\nend\nend\n')
+
+    def test_representative_m_files(self):
+        fixtures = Path(__file__).parent / 'fixtures' / 'matlab61'
+        for fixture in sorted(fixtures.glob('*.m')):
+            with self.subTest(file=fixture.name):
+                self.parse(fixture.read_text())
+
+    def test_lexer_reset_clears_matrix_and_command_state(self):
+        lexer = self.lexer_type(InputStream('load file.mat'))
+        lexer.getAllTokens()
+        lexer.inputStream = InputStream('x = [1 -2];')
+        types = [t.type for t in lexer.getAllTokens()]
+        self.assertIn(lexer.MATRIXSEP, types)
+        self.assertNotIn(lexer.COMMAND_ARGUMENT, types)
+        lexer.inputStream = InputStream('x=end;')
+        self.assertNotIn(lexer.END_INDEX, [t.type for t in lexer.getAllTokens()])
+
     def test_final_statement_without_newline_and_invalid_input(self):
         self.parse('x = 1')
         for text in ('x = ;\n', 'if x\ny=1;\n', "x = 'unterminated\n"):

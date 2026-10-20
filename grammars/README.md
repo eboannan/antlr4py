@@ -38,24 +38,26 @@ print(tree.toStringTree(recog=parser))
 - Power above unary signs and multiplication, left-to-right chained powers,
   and colon above relational and logical operators.
 - Final statements without a trailing newline; restricted assignment targets.
+- Significant matrix/cell whitespace, command-form calls and named function
+  handles; `end` restricted to indexing and loop jumps restricted to loops.
 
-## Remaining limits
+## Gap audit and current limits
 
-This is a syntax parser, not a MATLAB interpreter or an authoritative MATLAB
-6.1 specification. Tests exercise representative examples without comparison
-against a licensed MATLAB 6.1 installation.
+The [coverage audit](MATLAB61_AUDIT.md) records the concrete fixes, syntax
+inventory, intentionally excluded newer syntax, and remaining verification work.
+The extended copy now handles significant matrix whitespace, command-form calls,
+named function handles, shell escapes, indexing-only `end`, and loop-only
+`break`/`continue`. The original uploaded copy is still unchanged.
 
-Whitespace in matrices still needs fuller lexical treatment. For example,
-`[1 -2]` is read as one subtraction expression rather than two columns;
-`[1, -2]` expresses the intended columns. Adjacency can also be too permissive.
-Quote disambiguation is a practical heuristic, not a full MATLAB lexical model.
+For example, `[1 -2]` produces two columns, whereas `[1 - 2]` produces one
+subtraction expression. `disp hello` is represented as a command with a raw
+argument, rather than as an arithmetic expression.
 
-Command-form calls such as `disp hello`, dynamic field names, function handles,
-class-directory semantics, and exhaustive version-specific syntax are outside
-this copy's tested coverage. `end` is accepted as an expression atom and is not
-restricted to indexing by a semantic check. Assignment validity, loop-only
-`break`/`continue`, symbol resolution, array dimensions, and other semantic rules
-are not validated. Nested functions and newer MATLAB syntax are not targets.
+This is a syntax parser, not a MATLAB interpreter or a certified MATLAB 6.1
+specification. No archived 6.1 manual, reference installation, or independent
+period-correct corpus was available for this audit. Command/quote ambiguities
+and uncommon historical syntax still need that comparison. Runtime semantics
+such as array dimensions and variable/function resolution are outside scope.
 
 Run the focused regression suite:
 
