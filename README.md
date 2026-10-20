@@ -19,6 +19,7 @@ Pick your starting point:
 | I want to… | Start here |
 | --- | --- |
 | Try a working parser | Follow the two-minute example below. |
+| Build an AST and check names | Follow the [AST and semantic analysis example](#build-an-ast-and-run-semantic-analysis). |
 | Parse a MATLAB file | Follow the [MATLAB example](#parse-a-matlab-file). |
 | Generate my own grammar | Run `antlr4py MyGrammar.g4 -o generated --visitor`. |
 | Generate from Python | Use `from antlr4py import generate` below. |
@@ -148,6 +149,116 @@ does not execute the script or translate its calculations. A translator would
 need additional visitor logic. The grammar's [coverage audit](grammars/MATLAB61_AUDIT.md)
 describes the remaining MATLAB 6.1 verification limits. If regenerating existing
 parser files, add `--overwrite` to the generation command.
+
+## Build an AST and run semantic analysis
+
+The workflow has three stages:
+
+1. `matlab61.g4` generates a parser that produces a **parse tree** with grammar
+   rules, separators, and expression structure.
+2. [AstBuilder](examples/matlab_ast.py) visits that tree and produces an
+   **abstract syntax tree (AST)** containing meaningful nodes such as `Assign`,
+   `Name`, `Binary`, `Matrix`, `Apply`, and `If`. Nodes retain line/column locations.
+3. [SemanticAnalyzer](examples/matlab_semantics.py) walks the AST, tracks assigned
+   names, checks references, and merges assignment information across branches.
+   It has no dependency on the parser or its grammar-rule classes.
+
+For `x = 1 + 2*3;`, the AST structure is:
+
+```text
+Program
+  Assign
+    Name: x
+    Binary: +
+      Number: 1
+      Binary: *
+        Number: 2
+        Number: 3
+```
+
+Generate the parser and visitor, then build an AST and analyze the sample:
+
+```sh
+python -m antlr4py grammars/matlab61.g4 -o generated -package generated --visitor --overwrite
+python -m examples.analyze_matlab examples/signal_analysis.m --ast generated/signal_ast.json
+```
+
+Expected output:
+
+```text
+AST: 6 top-level statements
+Definitely assigned: gain, last, result, samples, signal
+Semantic checks: OK (example subset)
+```
+
+`generated/signal_ast.json` contains the AST as JSON, with node kinds, values,
+children, and source locations. Semicolons and grammar-only wrapper rules are
+omitted; matrix rows, operator precedence, and control-flow branches are retained.
+
+Try [semantic_errors.m](examples/semantic_errors.m), which is syntactically valid:
+
+```matlab
+% Valid syntax with deliberate semantic errors for the teaching analyzer.
+x = missing + 1;
+if x > 0
+    y = 2;
+end
+z = y + 1;
+```
+
+```sh
+python -m examples.analyze_matlab examples/semantic_errors.m
+```
+
+Expected output (exit status **1** indicates diagnostics):
+
+```text
+AST: 3 top-level statements
+Definitely assigned: x, z
+semantic_errors.m:2:5: UNDEFINED_NAME: 'missing' is not defined or in the demo's catalog
+semantic_errors.m:6:5: POSSIBLY_UNASSIGNED: 'y' is not assigned on every path
+```
+
+The right side of an assignment is checked before its target becomes defined.
+For `if`/`elseif`/`else`, a name is definitely assigned afterward only if every
+branch assigns it. Without an `else`, the analyzer includes the path on which
+none of the conditions holds. It conservatively considers all branches possible.
+
+The key Python calls, after constructing `parser` as in the parsing example, are:
+
+```python
+from examples.matlab_ast import AstBuilder
+from examples.matlab_semantics import SemanticAnalyzer
+
+ast = AstBuilder().visit(parser.file_())
+analyzer = SemanticAnalyzer()
+for diagnostic in analyzer.analyze(ast):
+    print(diagnostic)
+```
+
+### Example scope
+
+This is a teaching analyzer with a **closed-world function catalog**. Unknown
+names may refer to functions or workspace variables in real MATLAB. Add known
+external functions with `--function my_function` (repeatable), or pass a function
+set to `SemanticAnalyzer(functions=...)`. The CLI adds to the default catalog;
+the Python argument replaces it.
+
+The AST builder supports script assignments to a single plain name, expressions,
+matrices/cells, ranges, indexing/fields, named handles, command calls, and
+`if`/`elseif`/`else`. Function files, loops, declarations, shell escapes, indexed
+assignment targets, and multiple-output assignments raise an explicit
+unsupported-syntax error (exit status **2**) rather than being silently skipped.
+The grammar itself supports more syntax than this AST example.
+
+`Apply` preserves MATLAB's ambiguity between `f(x)` calls and `A(x)` indexing.
+The example checks names without resolving that ambiguity or inferring types,
+shapes, function signatures, or field existence. Command arguments remain literal
+text; `disp hello` does not read a variable called `hello`. Workspace-changing
+operations such as `load`, `clear`, and `eval` produce an explicit diagnostic.
+The analyzer does not execute code, evaluate branch conditions, or inspect the
+MATLAB workspace/search path. A clean result establishes these limited checks,
+not that the program can execute successfully.
 
 ## Develop and test
 
