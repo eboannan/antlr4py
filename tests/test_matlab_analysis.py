@@ -15,10 +15,11 @@ class MatlabAnalysisTests(unittest.TestCase):
     def setUpClass(cls):
         cls.root = Path(__file__).resolve().parents[1]
         cls.output = tempfile.TemporaryDirectory()
-        generate(cls.root / 'grammars/matlab61.g4', cls.output.name, visitor=True)
+        package = Path(cls.output.name) / 'generated'
+        generate(cls.root / 'grammars/matlab61.g4', package, visitor=True, package='generated')
         sys.path[:0] = [cls.output.name, str(cls.root)]
-        cls.lexer = importlib.import_module('matlab61Lexer').matlab61Lexer
-        cls.parser = importlib.import_module('matlab61Parser').matlab61Parser
+        cls.lexer = importlib.import_module('generated.matlab61Lexer').matlab61Lexer
+        cls.parser = importlib.import_module('generated.matlab61Parser').matlab61Parser
         cls.ast_module = importlib.import_module('examples.matlab_ast')
         cls.semantics = importlib.import_module('examples.matlab_semantics')
 
@@ -26,7 +27,8 @@ class MatlabAnalysisTests(unittest.TestCase):
     def tearDownClass(cls):
         for path in (cls.output.name, str(cls.root)):
             sys.path.remove(path)
-        for name in ('matlab61Lexer', 'matlab61Parser', 'matlab61Visitor',
+        for name in ('generated', 'generated.matlab61Lexer', 'generated.matlab61Parser',
+                     'generated.matlab61Visitor',
                      'examples.matlab_ast', 'examples.matlab_semantics'):
             sys.modules.pop(name, None)
         cls.output.cleanup()
@@ -118,7 +120,7 @@ class MatlabAnalysisTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as work:
             package = Path(work)/'generated'
             package.mkdir()
-            for source in Path(self.output.name).glob('*.py'):
+            for source in (Path(self.output.name)/'generated').glob('*.py'):
                 (package/source.name).write_bytes(source.read_bytes())
             (package/'__init__.py').write_text('')
             code = ('import sys; sys.path[:0] = ' + repr([work, str(self.root)]) + '; '

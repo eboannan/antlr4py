@@ -11,6 +11,24 @@ requires-python = ">=3.10"
 license = "BSD-3-Clause AND Unicode-DFS-2016"
 license-files = ["LICENSE.txt", "UNICODE-LICENSE.txt"]
 dependencies = ["antlr4-python3-runtime==4.13.2"]
+keywords = ["antlr", "parser", "lexer", "grammar", "code-generation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Software Development :: Compilers",
+]
+
+[project.urls]
+Homepage = "https://github.com/eboannan/antlr4py"
+Documentation = "https://github.com/eboannan/antlr4py/blob/main/USAGE.md"
+Repository = "https://github.com/eboannan/antlr4py"
+Issues = "https://github.com/eboannan/antlr4py/issues"
 
 [project.scripts]
 antlr4py = "antlr4_generator.__main__:main"

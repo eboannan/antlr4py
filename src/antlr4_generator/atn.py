@@ -313,6 +313,11 @@ class ATNBuilder:
                 children.reverse()
                 start.nonGreedy = True
             for child in children:
+                # Keep the empty alternative directly connected to the block
+                # end, as expected by the runtime's optional-block prediction.
+                if child == ('seq', []):
+                    self.epsilon(start, end)
+                    continue
                 entry = self.state(BasicState, rule)
                 self.epsilon(start, entry)
                 self.expression(child, entry, end, rule)

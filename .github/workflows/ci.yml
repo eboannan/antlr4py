@@ -1,0 +1,37 @@
+name: Package checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.10', '3.13', '3.14']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install build twine
+      - run: python -m build
+      - run: python -m twine check --strict dist/*
+      - name: Install wheel
+        shell: bash
+        run: python -m pip install dist/*.whl
+      - run: python scripts/check_installed.py
+      - run: python -m unittest discover -s tests -v
+      - name: Test source distribution
+        shell: bash
+        run: |
+          mkdir sdist-check
+          tar -xzf dist/*.tar.gz -C sdist-check
+          cd sdist-check/*
+          python -m unittest discover -s tests -v
+      - uses: actions/upload-artifact@v4
+        if: matrix.os == 'ubuntu-latest' && matrix.python == '3.13'
+        with:
+          name: distributions
+          path: dist/
